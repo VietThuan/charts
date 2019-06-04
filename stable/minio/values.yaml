@@ -128,8 +128,7 @@ ingress:
 ## Node labels for pod assignment
 ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
 ## We only deploy minio to the specified nodes. select your nodes by using `kubectl label node hostname1 -l minio-server=true`
-nodeSelector:
-  minio-server: "true"
+nodeSelector: {minio-server: "true"}  
 tolerations: []
 affinity: {}
 
