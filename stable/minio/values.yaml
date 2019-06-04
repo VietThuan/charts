@@ -20,7 +20,7 @@ mcImage:
 ## minio server mode, i.e. standalone or distributed.
 ## Distributed Minio ref: https://docs.minio.io/docs/distributed-minio-quickstart-guide
 ##
-mode: standalone
+mode: distributed
 
 ## Update strategy for Deployments
 DeploymentUpdate:
@@ -42,8 +42,8 @@ priorityClassName: ""
 ## Distributed Minio ref: https://docs.minio.io/docs/distributed-minio-quickstart-guide
 ##
 existingSecret: ""
-accessKey: "AKIAIOSFODNN7EXAMPLE"
-secretKey: "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+accessKey: "minio"
+secretKey: "minio123"
 configPath: "/root/.minio/"
 configPathmc: "/root/.mc/"
 mountPath: "/export"
@@ -127,8 +127,9 @@ ingress:
 
 ## Node labels for pod assignment
 ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
-##
-nodeSelector: {}
+## We only deploy minio to the specified nodes. select your nodes by using `kubectl label node hostname1 -l minio-server=true`
+nodeSelector:
+  minio-server: "true"
 tolerations: []
 affinity: {}
 
