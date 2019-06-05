@@ -77,8 +77,8 @@ persistence:
   ##
   ## Storage class of PV to bind. By default it looks for standard storage class.
   ## If the PV uses a different storage class, specify that here.
-  storageClass: local-storage
-  # VolumeName: ""
+  storageClassName: local-storage
+  VolumeName: Filesystem
   accessMode: ReadWriteOnce
   size: 10Gi
 
@@ -131,7 +131,11 @@ ingress:
 nodeSelector:
   minio-server: "true"  
 tolerations: []
-affinity: {}
+affinity:
+  minio-01
+  minio-02
+  minio-03
+  minio-
 
 # Additational pod annotations
 podAnnotations: {}
