@@ -132,10 +132,17 @@ nodeSelector:
   minio-server: "true"  
 tolerations: []
 affinity:
-  minio-01
-  minio-02
-  minio-03
-  minio-
+  required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - minio-01
+          - minio-02
+          - minio-03
+          - minio-04
+  
 
 # Additational pod annotations
 podAnnotations: {}
